@@ -40,3 +40,9 @@ This program is a microservice designed for RPG dungeon crawls. It takes in two 
 2. The function returns a dynamically allocated enemy with a generated health, attack, and rarity. It will return a name in the future.
 3. The first parameter is an integer representing the floor that the user is on. It is expected to be an integer above 0 and below INT_MAX.
 4. The second parameter is an integer representing the difficulty the user selected. It is expected to be an integer between 1 and 3. 
+
+## Example Code
+1. After compiling using `compile.sh` run the microprocess in the background using `enemymicroprocess &`
+2. Run the `runexample` executable
+3. Input the desired values
+4. Watch an enemy struct be printed
