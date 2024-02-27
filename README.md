@@ -46,3 +46,7 @@ This program is a microservice designed for RPG dungeon crawls. It takes in two 
 2. Run the `runexample` executable
 3. Input the desired values
 4. Watch an enemy struct be printed
+
+
+## Sequence Diagram
+![A picture of a UML diagram](./Sequence%20diagram.png)
