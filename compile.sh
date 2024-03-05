@@ -13,3 +13,8 @@ g++ microprocess.cpp -o enemymicroprocess
 echo g++ example.cpp enemysharelib.o -o runexample
 rm -f runexample
 g++ example.cpp enemysharelib.o -o runexample
+
+echo killing any running enemymicroprocesses
+# Both are needed depending on how the system shortens
+pkill enemymicroproce
+pkill enemymicroprocess
