@@ -1,7 +1,7 @@
 #include "enemysharelib.h"
 
 void _print_enemy(struct enemy* toprint){
-    // cout << "Name: " << toprint->name;
+    cout << "Name: " << toprint->name;
     cout << "\nHealth: " << toprint->health;
     cout << "\nAttack: " << toprint->attack;
     cout << "\nRarity: " << toprint->rarity << "\n";
@@ -39,14 +39,15 @@ struct enemy* generate_enemy(int floor, int difficulty){
     // Create the actual memory using the id and letting it pick any memory it wants. 
     // We don't need any flags.
     int* floor_pipe = (int*)shmat(floor_id, NULL, 0);
-    // memset(send_pipe, '\0', key_sendsize);
     
     int* diff_pipe = (int*)shmat(diff_id, NULL, 0);
 
     int* switch_pipe = (int*)shmat(switch_id, NULL, 0);   
-    // memset(switch_pipe, '\0', key_switchsize);
 
     struct enemy* enemy_pipe = (enemy*)shmat(enemy_id, NULL, 0);
+
+    // Turn the switch pipe off right away
+    *switch_pipe = false;
 
     // 1 easy, 2 medium, 3 hard
     int difficultyNum = difficulty;
@@ -61,7 +62,7 @@ struct enemy* generate_enemy(int floor, int difficulty){
     // Wait until the new enemy is created and the switch is toggled off
     // cout << "\nRequested a new enemy\n";
     while(*switch_pipe == true){
-        sleep(0.5);
+        sleep(DELAY_LOOP);
     }
     // cout << "\nGot a new enemy\n";
 
@@ -70,6 +71,7 @@ struct enemy* generate_enemy(int floor, int difficulty){
     output_enemy->attack = enemy_pipe->attack;
     output_enemy->health = enemy_pipe->health;
     // output_enemy->name = enemy_pipe->name;
+    strcpy(output_enemy->name, enemy_pipe->name);
     output_enemy->rarity = enemy_pipe->rarity;
 
     // cout << "\nEnemy received!\n";

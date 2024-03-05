@@ -10,12 +10,13 @@
 
 using namespace std;
 
+#define DELAY_LOOP 0.25
 struct enemy
 {
     int health;
     int attack;
     int rarity;
-    string name;
+    char name[25];
 };
 
 void _print_enemy(struct enemy* toprint);
